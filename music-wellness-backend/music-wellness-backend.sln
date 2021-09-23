@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{49AED3C6-275C-42AF-907E-129CCB50B747}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{FB1BC995-9539-46B7-AFB7-7CACA5071B5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication", "Authentication\Authentication.csproj", "{BD59E84F-2318-46E0-903C-96B8FB5F4D39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{D020C0BB-F03F-4B4E-9154-ACAD5E57F265}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49AED3C6-275C-42AF-907E-129CCB50B747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49AED3C6-275C-42AF-907E-129CCB50B747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49AED3C6-275C-42AF-907E-129CCB50B747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49AED3C6-275C-42AF-907E-129CCB50B747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB1BC995-9539-46B7-AFB7-7CACA5071B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB1BC995-9539-46B7-AFB7-7CACA5071B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB1BC995-9539-46B7-AFB7-7CACA5071B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB1BC995-9539-46B7-AFB7-7CACA5071B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD59E84F-2318-46E0-903C-96B8FB5F4D39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD59E84F-2318-46E0-903C-96B8FB5F4D39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD59E84F-2318-46E0-903C-96B8FB5F4D39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD59E84F-2318-46E0-903C-96B8FB5F4D39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D020C0BB-F03F-4B4E-9154-ACAD5E57F265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D020C0BB-F03F-4B4E-9154-ACAD5E57F265}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D020C0BB-F03F-4B4E-9154-ACAD5E57F265}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D020C0BB-F03F-4B4E-9154-ACAD5E57F265}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
