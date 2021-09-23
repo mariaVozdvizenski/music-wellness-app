@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DAL;
 using Domain;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApp.Controllers
 {
@@ -42,7 +44,7 @@ namespace WebApp.Controllers
 
         // PUT: api/Moods/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> PutMood(int id, Mood mood)
         {
             if (id != mood.Id)
@@ -73,7 +75,7 @@ namespace WebApp.Controllers
 
         // POST: api/Moods
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost, Authorize(Roles = UserRoles.Admin)]
         public async Task<ActionResult<Mood>> PostMood(Mood mood)
         {
             _context.Moods.Add(mood);
@@ -83,7 +85,7 @@ namespace WebApp.Controllers
         }
 
         // DELETE: api/Moods/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> DeleteMood(int id)
         {
             var mood = await _context.Moods.FindAsync(id);
