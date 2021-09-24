@@ -30,6 +30,7 @@ namespace WebApp.Controllers
 
         // GET: api/Moods/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Mood>> GetMood(int id)
         {
             var mood = await _context.Moods.FindAsync(id);

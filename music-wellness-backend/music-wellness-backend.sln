@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication", "Authentic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{D020C0BB-F03F-4B4E-9154-ACAD5E57F265}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions", "Extensions\Extensions.csproj", "{CEE2FD25-1B94-4408-B3A9-8C3DDE58FBBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{D020C0BB-F03F-4B4E-9154-ACAD5E57F265}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D020C0BB-F03F-4B4E-9154-ACAD5E57F265}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D020C0BB-F03F-4B4E-9154-ACAD5E57F265}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEE2FD25-1B94-4408-B3A9-8C3DDE58FBBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEE2FD25-1B94-4408-B3A9-8C3DDE58FBBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEE2FD25-1B94-4408-B3A9-8C3DDE58FBBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEE2FD25-1B94-4408-B3A9-8C3DDE58FBBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

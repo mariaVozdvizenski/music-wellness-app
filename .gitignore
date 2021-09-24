@@ -30,6 +30,7 @@ _UpgradeReport_Files/
 [Pp]ackages/
 
 /music-wellness-backend/DAL/Migrations
+/music-wellness-backend/DataInitializers
 
 Thumbs.db
 Desktop.ini
