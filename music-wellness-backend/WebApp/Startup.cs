@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Authentication;
 using DAL;
+using DAL.Repositories;
 using Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -38,7 +39,10 @@ namespace WebApp
             services.AddControllers();
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseMySQL(Configuration.GetConnectionString("MySQLConnString")));
-            
+
+            services.AddScoped<MoodRepository>();
+            services.AddScoped<SongRepository>();
+
             // For Identity  
             services.AddIdentity<User, Role>(options =>
                 {

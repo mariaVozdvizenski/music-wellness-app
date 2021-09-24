@@ -5,6 +5,7 @@ using Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DAL;
+using DAL.Repositories;
 using Domain;
 using Microsoft.AspNetCore.Authorization;
 
@@ -14,32 +15,29 @@ namespace WebApp.Controllers
     [ApiController]
     public class MoodsController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly MoodRepository _repository; 
 
-        public MoodsController(AppDbContext context)
+        public MoodsController(MoodRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         // GET: api/Moods
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Mood>>> GetMoods()
         {
-            return await _context.Moods.ToListAsync();
+            return await _repository.GetAll();
         }
 
         // GET: api/Moods/5
         [HttpGet("{id}")]
-        [Authorize]
         public async Task<ActionResult<Mood>> GetMood(int id)
         {
-            var mood = await _context.Moods.FindAsync(id);
-
+            var mood = await _repository.Get(id);
             if (mood == null)
             {
                 return NotFound();
             }
-
             return mood;
         }
 
@@ -52,25 +50,7 @@ namespace WebApp.Controllers
             {
                 return BadRequest();
             }
-
-            _context.Entry(mood).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MoodExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            await _repository.Update(mood);
             return NoContent();
         }
 
@@ -79,9 +59,7 @@ namespace WebApp.Controllers
         [HttpPost, Authorize(Roles = UserRoles.Admin)]
         public async Task<ActionResult<Mood>> PostMood(Mood mood)
         {
-            _context.Moods.Add(mood);
-            await _context.SaveChangesAsync();
-
+            await _repository.Add(mood);
             return CreatedAtAction("GetMood", new { id = mood.Id }, mood);
         }
 
@@ -89,21 +67,12 @@ namespace WebApp.Controllers
         [HttpDelete("{id}"), Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> DeleteMood(int id)
         {
-            var mood = await _context.Moods.FindAsync(id);
+            var mood = await _repository.Delete(id);
             if (mood == null)
             {
                 return NotFound();
             }
-
-            _context.Moods.Remove(mood);
-            await _context.SaveChangesAsync();
-
             return NoContent();
-        }
-
-        private bool MoodExists(int id)
-        {
-            return _context.Moods.Any(e => e.Id == id);
         }
     }
 }

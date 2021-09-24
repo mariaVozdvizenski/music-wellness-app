@@ -9,8 +9,11 @@ namespace Domain
         
         [Required, MaxLength(50)]
         public string Title { get; set; }
+        
         [MaxLength(50)]
         public string Artist { get; set; }
+        
+        public string FileName { get; set; }
         
         public int MoodId { get; set; }
         public Mood Mood { get; set; }
