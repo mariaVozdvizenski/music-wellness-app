@@ -1,15 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DAL;
 using DAL.Repositories;
 using Domain;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Hosting.Internal;
 
 namespace WebApp.Controllers
 {
