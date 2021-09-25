@@ -7,7 +7,7 @@ class NavItem extends React.Component {
     }
 
     render() {
-        return <div className="nav-item">{this.props.name}</div>
+        return <div className="nav-item"><a href='google.com'>{this.props.name}</a></div>
     }
 }
 

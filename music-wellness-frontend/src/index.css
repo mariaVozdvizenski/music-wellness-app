@@ -7,6 +7,7 @@ html {
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);;
 }
 
 body {
@@ -18,12 +19,13 @@ body {
 }
 
 .background-img {
-  height: 826px;
-  width: 550px;
+  height: 626px;
+  width: 450px;
   max-width: 100%;
   position:fixed;
   bottom:0px;
   background-image: url('images/2e4b5d189022e52f6eefc4e6b2ee5977-flipped.jpg');
+  background-size: cover;
   z-index: -1;
 }
 
@@ -33,6 +35,11 @@ body {
   margin: auto;
   margin-top: 60px;
   font-size: 24px;
+  align-items: center;
+}
+
+.nav-item {
+  margin-left: 15px;
 }
 
 .nav-pic {
@@ -41,5 +48,22 @@ body {
   background-image: url('./images/logo.svg');
   background-repeat: no-repeat;
   flex: 2;
+}
+
+a {
+  color: white;
+  transition: 0.3s;
+}
+
+a:hover {
+  background-color: #D9EB91;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
 }
 
