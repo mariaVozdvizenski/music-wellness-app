@@ -1,0 +1,45 @@
+*, *::after, *::before {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+body {
+  background-color: #F1E4D4;
+  height: 100%;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.background-img {
+  height: 826px;
+  width: 550px;
+  max-width: 100%;
+  position:fixed;
+  bottom:0px;
+  background-image: url('images/2e4b5d189022e52f6eefc4e6b2ee5977-flipped.jpg');
+  z-index: -1;
+}
+
+.nav {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  margin-top: 60px;
+  font-size: 24px;
+}
+
+.nav-pic {
+  height: 61px;
+  width: 61px;
+  background-image: url('./images/logo.svg');
+  background-repeat: no-repeat;
+  flex: 2;
+}
+
