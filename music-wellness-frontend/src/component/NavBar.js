@@ -11,9 +11,9 @@ class NavBar extends React.Component {
     render() {
         return <div className="nav">
             <NavPicture></NavPicture>
-            <NavItem name="Log In"></NavItem>
-            <NavItem name="Register"></NavItem>
-            <NavItem name="All Songs"></NavItem>
+            <NavItem url="/login" name="Log In"></NavItem>
+            <NavItem url="/register" name="Register"></NavItem>
+            <NavItem url="/all-songs" name="All Songs"></NavItem>
         </div>
     }
 }
