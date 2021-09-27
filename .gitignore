@@ -31,6 +31,7 @@ _UpgradeReport_Files/
 
 /music-wellness-backend/DAL/Migrations
 /music-wellness-backend/DataInitializers
+/music-wellness-backend/WebApp/Uploads
 
 Thumbs.db
 Desktop.ini
