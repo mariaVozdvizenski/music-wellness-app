@@ -7,6 +7,7 @@ using Authentication;
 using DAL;
 using DAL.Repositories;
 using Extensions;
+using Mappers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,7 +40,9 @@ namespace WebApp
             services.AddControllers();
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseMySQL(Configuration.GetConnectionString("MySQLConnString")));
-
+            
+            services.AddScoped<SongMapper>();
+            
             services.AddScoped<MoodRepository>();
             services.AddScoped<SongRepository>();
 
@@ -104,7 +107,7 @@ namespace WebApp
             
             using var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
             
-            DataInitializers.AddMoods(context);
+            DataInitializers.SeedData(context);
         }
     }
 }

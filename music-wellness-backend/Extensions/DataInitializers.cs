@@ -1,12 +1,18 @@
 ﻿using System.Linq;
 using DAL;
 using Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Extensions
 {
     public static class DataInitializers
     {
-        public static void AddMoods(AppDbContext context)
+        public static void SeedData(AppDbContext context)
+        {
+            AddMoods(context);
+            AddSongs(context);
+        }
+        private static void AddMoods(AppDbContext context)
         {
             var moods = new Mood[]
             {
@@ -45,13 +51,46 @@ namespace Extensions
             AddDataToDb(moods, context);
         }
         
-        private static async void AddDataToDb (Mood[] moods, AppDbContext context)
+        private static void AddSongs(AppDbContext context)
         {
-            foreach (var mood in moods)
+            var songs = new Song[]
             {
-                if (!context.Moods.Any(l => l.Id == mood.Id))
+                new Song()
                 {
-                    await context.Moods.AddAsync(mood);
+                    Id = 1,
+                    Title = "Test1",
+                    MoodId = 1,
+                    FileName = "test1.mp3"
+                },
+                new Song()
+                {
+                    Id = 2,
+                    Title = "Test2",
+                    MoodId = 1,
+                    FileName = "test2.mp3"
+                },
+                new Song()
+                {
+                    Id = 3,
+                    Title = "Test3",
+                    MoodId = 2,
+                    FileName = "test3.mp3"
+                },
+            };
+            
+            AddDataToDb(songs, context);
+        }
+        
+        private static async void AddDataToDb<TEntity> (TEntity[] entities, AppDbContext context)
+        where TEntity : class, IEntity
+        {
+            DbSet<TEntity> entityDbSet = context.Set<TEntity>();
+            
+            foreach (var entity in entities)
+            {
+                if (!entityDbSet.Any(l => l.Id == entity.Id))
+                {
+                    await entityDbSet.AddAsync(entity);
                 }
             }
             await context.SaveChangesAsync();

@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DAL.Repositories;
 using Domain;
+using DTO;
+using Mappers;
 using Microsoft.AspNetCore.Http;
 
 namespace WebApp.Controllers
@@ -14,6 +17,7 @@ namespace WebApp.Controllers
     public class SongsController : ControllerBase
     {
         private readonly SongRepository _repository;
+        private readonly SongMapper _mapper = new ();
 
         public SongsController(SongRepository repository)
         {
@@ -22,9 +26,19 @@ namespace WebApp.Controllers
 
         // GET: api/Songs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Song>>> GetSongs()
+        public async Task<ActionResult<IEnumerable<SongDTO>>> GetSongs(int? moodId)
         {
-            return await _repository.GetAll();
+            if (moodId == null)
+            {
+                var allSongs = await _repository.GetAll();
+                return allSongs.Select(s => _mapper.EntityToDto(s)).ToList();
+            }
+            var songs = await _repository.GetSongsByMoodId(moodId);
+            if (songs == null)
+            {
+                return BadRequest(new {message = "This mood doesn't exist."});
+            }
+            return songs.Select(s => _mapper.EntityToDto(s)).ToList();
         }
 
         // GET: api/Songs/5

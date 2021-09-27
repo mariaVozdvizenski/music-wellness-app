@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain
 {
-    public class Song
+    public class Song : IEntity
     {
         public int Id { get; set; }
         
@@ -13,6 +13,7 @@ namespace Domain
         [MaxLength(50)]
         public string Artist { get; set; }
         
+        [Required]
         public string FileName { get; set; }
         
         public int MoodId { get; set; }
