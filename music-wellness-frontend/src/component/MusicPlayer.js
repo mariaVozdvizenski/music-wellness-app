@@ -1,29 +1,37 @@
 import React from 'react';
-import {Howl, Howler} from 'howler';
-import ReactJkMusicPlayer from 'react-jinke-music-player'
-import 'react-jinke-music-player/assets/index.css'
+import ReactJkMusicPlayer from 'react-jinke-music-player';
+import 'react-jinke-music-player/assets/index.css';
+import GlobalVariables from '../service/GlobalVariables';
 
 class MusicPlayer extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            audioList : [{
-                name: "Wee",
-                musicSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-                cover: "https://filecnc.com/9718-large_default/Geometric-Pattern-Square-Vector-Free-Vector.jpg"
-            }, {
-                name: "Woah",
-                musicSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
-                cover: "https://filecnc.com/9718-large_default/Geometric-Pattern-Square-Vector-Free-Vector.jpg"
-            }]
+            audioList: []
         }
+        this.getSongUrls = this.getSongUrls.bind(this);
+        this.audioURL = "/songs/download?fileName=";
+    }
+
+    componentDidMount() {
+        this.setState( {audioList : this.getSongUrls()} )
+    }
+
+    getSongUrls() {
+        let filenames = this.props.songs.map(s => s.fileName); 
+        let fullURLS = filenames.map(f => GlobalVariables.baseURL + this.audioURL + f)
+        return fullURLS;
+    }
+
+    onDestroyed = (currentPlayId, audioLists, audioInfo) => {
+        console.log('onDestroyed:', currentPlayId, audioLists, audioInfo)
     }
 
 
     render() {
         return <div>
-            <ReactJkMusicPlayer theme="dark" mode="full" audioLists={this.state.audioList} remove={false}></ReactJkMusicPlayer>
+            <ReactJkMusicPlayer onDestroyed={this.onDestroyed} theme="dark" mode="full" audioLists={this.props.songs} remove={false}></ReactJkMusicPlayer>
         </div>
     }
 }

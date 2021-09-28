@@ -1,7 +1,7 @@
 import React from 'react';
 import './AllSongs.css';
 import Song from './Song';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 
 
 class AllSongs extends React.Component {

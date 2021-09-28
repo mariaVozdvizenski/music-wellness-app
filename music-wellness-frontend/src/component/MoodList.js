@@ -1,20 +1,26 @@
 import React from 'react';
 import MoodButton from './MoodButton';
+import MoodService from '../service/MoodService'
 
 class MoodList extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = { moods: [] };
     }
+
+    componentDidMount() {
+        MoodService.getAllMoods().then(data => {
+            this.setState({moods: data})
+        })
+    }
+    
 
     render() {
         return <ul className="mood-list">
-            <MoodButton id="1" name="Happy"></MoodButton>
-            <MoodButton id="2" name="Nostalgic"></MoodButton>
-            <MoodButton id="3" name="Calm"></MoodButton>
-            <MoodButton id="4" name="Focused"></MoodButton>
-            <MoodButton id="5" name="Powerful"></MoodButton>
-            <MoodButton id="6" name="Energetic"></MoodButton>
+            {
+                this.state.moods.map((mood, i) => <MoodButton id={mood.id} name={mood.moodName} key={mood.id}></MoodButton>)
+            }
         </ul>
     }
 }

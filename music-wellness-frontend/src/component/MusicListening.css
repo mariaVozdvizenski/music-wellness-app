@@ -3,8 +3,23 @@
     margin: auto;
     margin-top: 50px;
     text-align: center;
+    position: relative;
 }
 
 .progress-bar {
     background-color: inherit;
 }
+
+.music-listening-bg {
+    height: 366px;
+    width: 533px;
+    max-width: 100%;
+    position: absolute;
+    top: -25%;
+    left: 20%;
+    background-image: url('../images/ellipse-music.svg');
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+

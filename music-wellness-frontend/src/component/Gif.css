@@ -1,0 +1,45 @@
+.gif {
+    height: 300px;
+    background-position: center;
+    background-size: 70%;
+    margin-top: 20px;
+    width: 100%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+.nostalgic {
+    background-image: url("../images/mood_gifs/Nostalgic.gif");
+}
+
+.happy {
+    background-image: url("../images/mood_gifs/Happy.gif");
+}
+
+.calm {
+    background-image: url("../images/mood_gifs/Calm.gif");
+}
+
+.focused {
+    background-image: url("../images/mood_gifs/Focused.gif");
+}
+
+.powerful {
+    background-image: url("../images/mood_gifs/Powerful.gif");
+}
+
+.energetic {
+    background-image: url("../images/mood_gifs/Energetic.gif");
+}
+
+.gif-bg {
+    position: absolute;
+    z-index: -1;
+    left: 25px;
+    top: 25px;
+    box-shadow: inherit;
+    width: inherit;
+    border-radius: 5px;
+    background-color: #C3D480;
+    height: inherit;
+}
