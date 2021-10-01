@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DAL.Repositories;
@@ -9,6 +12,7 @@ using Domain;
 using DTO;
 using Mappers;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Net.Http.Headers;
 
 namespace WebApp.Controllers
 {
@@ -85,7 +89,7 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
             var songTitle = $@"{DateTime.Now.Ticks}";
-            var validExtensions = new List<string>{".mp3", ".aac", ".wav", ".flac", ".alac", ".dsd"};
+            var validExtensions = new List<string>{".mp3"};
             var fileExtension =  Path.GetExtension(file.FileName);
             var filePath = Environment.CurrentDirectory + "\\Uploads\\" + songTitle + fileExtension;
 
@@ -105,19 +109,24 @@ namespace WebApp.Controllers
         [HttpGet("download")]
         public async Task<ActionResult> GetAudio(string fileName)
         {
+            HttpResponseMessage result = null;  
+
             if (fileName == null)
             {
                 return BadRequest();
             }
             var filePath = Environment.CurrentDirectory + "\\Uploads\\" + fileName;
-            
+
             if (!System.IO.File.Exists(filePath))
             {
                 return BadRequest();
             }
-            
+
             Byte[] b = await System.IO.File.ReadAllBytesAsync(filePath);
-            return File(b, "audio/mpeg");
+            //return File(b, "audio/mpeg");
+            //var b = System.IO.File.Create(filePath);
+            return File(b, "audio/mpeg", true);
+
         }
 
         // DELETE: api/Songs/5

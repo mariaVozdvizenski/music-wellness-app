@@ -33,9 +33,8 @@ function MusicListening() {
             for (let i = 0; i < songs.length; i++) {
                 const audioObj = { 
                     musicSrc : GlobalVariables.baseURL + audioURL + songs[i].fileName,
-                    name : songs[i].title,
-                    singer : songs[i].artist,
-                    cover: "https://drive.google.com/file/d/1u0fKy-_9CHMi4IyM_iurrGeUKm08ALVn/"
+                    name :  songs[i].title,
+                    singer : songs[i].artist
                 };
                 fullUrls.push(audioObj);
             }
@@ -45,7 +44,7 @@ function MusicListening() {
         return (<div className="music-listening"> 
             <div className="music-listening-bg"></div>
             <h1>Creating a {mood.moodName} mood...</h1>
-            <Gif name="energetic"></Gif>
+            <Gif name="energetic" source="An Artist"></Gif>
             <MusicPlayer songs={songURLS}></MusicPlayer>
         </div>
         );

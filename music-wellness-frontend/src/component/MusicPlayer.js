@@ -31,7 +31,7 @@ class MusicPlayer extends React.Component {
 
     render() {
         return <div>
-            <ReactJkMusicPlayer onDestroyed={this.onDestroyed} theme="dark" mode="full" audioLists={this.props.songs} remove={false}></ReactJkMusicPlayer>
+            <ReactJkMusicPlayer onDestroyed={this.onDestroyed} autoHiddenCover={true} theme="dark" mode="full" audioLists={this.props.songs} remove={false} showDownload={false}></ReactJkMusicPlayer>
         </div>
     }
 }

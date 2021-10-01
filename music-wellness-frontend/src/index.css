@@ -30,6 +30,13 @@ body {
   z-index: -99;
 }
 
+.background-img > span {
+  position: fixed;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 13px;
+}
+
 .app-container {
   width: 90%;
   margin: auto;
