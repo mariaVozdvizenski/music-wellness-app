@@ -57,6 +57,10 @@ body {
   margin-left: 15px;
 }
 
+.nav-item > p {
+  margin-bottom: 0;
+}
+
 .nav-pic {
   height: 61px;
   background-image: url('./images/logo.svg');

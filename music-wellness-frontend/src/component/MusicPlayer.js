@@ -28,7 +28,6 @@ class MusicPlayer extends React.Component {
         console.log('onDestroyed:', currentPlayId, audioLists, audioInfo)
     }
 
-
     render() {
         return <div>
             <ReactJkMusicPlayer onDestroyed={this.onDestroyed} autoHiddenCover={true} theme="dark" mode="full" audioLists={this.props.songs} remove={false} showDownload={false}></ReactJkMusicPlayer>

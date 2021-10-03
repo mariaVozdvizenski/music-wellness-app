@@ -54,6 +54,9 @@ namespace WebApp.Controllers
   
                 return Ok(new  
                 {  
+                    id = user.Id,
+                    userName = user.UserName,
+                    isAdmin = await userManager.IsInRoleAsync(user, UserRoles.Admin),
                     token = new JwtSecurityTokenHandler().WriteToken(token),  
                     expiration = token.ValidTo  
                 });  

@@ -14,32 +14,45 @@ import {
 } from "react-router-dom";
 import AllSongs from './component/AllSongs';
 import MusicListening from './component/MusicListening';
+import React from 'react';
+import { render } from '@testing-library/react';
+import { authenticationService } from './service/AuthenticationService';
+import { PrivateRoute } from './component/PrivateRoute';
 
-function App() {
-  return (
-    <Router>
+
+class App extends React.Component{
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        currentUser: null
+    };
+  }
+
+  componentDidMount() {
+    authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }));
+  }
+
+
+  render() {
+
+    const { currentUser } = this.state;
+
+    return (<Router>
       <div className="app-container">
-        <NavBar></NavBar>
+        <NavBar user={currentUser}></NavBar>
         <Switch>
-        <Route path="/mood/:id">
-          <MusicListening></MusicListening>
-        </Route>
-        <Route path="/all-songs">
-          <AllSongs/>
-        </Route>
-        <Route path="/login">
-          <LogIn/>
-        </Route>
-        <Route path="/add-song">
-          <AddSong/>
-        </Route>
-        <Route path="/">
-          <Home/>
-        </Route>
+        <Route path="/mood/:id" component={MusicListening}/>
+        <Route path="/all-songs" component={AllSongs}/>
+        <Route path="/login" component={LogIn}/>
+        <PrivateRoute path="/add-song" component={AddSong}/>
+        <Route path="/" component={Home}/>
         </Switch>
     </div>
     </Router>
-  );
+  )
+  }
 }
 
 export default App;

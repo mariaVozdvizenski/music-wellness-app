@@ -1,10 +1,9 @@
 import React from 'react';
 import './AddSong.css';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { authenticationService } from '../service/AuthenticationService';
+import { Redirect } from 'react-router-dom';
 
 
 class AddSong extends React.Component {
@@ -14,6 +13,9 @@ class AddSong extends React.Component {
     }
 
     render() {
+        if (!authenticationService.currentUser || !authenticationService.currentUserValue.isAdmin) {
+            return <Redirect to="/login"></Redirect>
+        }
         return <div className="page-content">
             <div className="background-green">
                 <h2>Add a New Song</h2>
