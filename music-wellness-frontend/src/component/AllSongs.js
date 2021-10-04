@@ -21,7 +21,6 @@ class AllSongs extends React.Component {
     }
 
     renderAddSongLink() {
-        console.log(authenticationService.currentUserValue);
         if (authenticationService.currentUserValue && authenticationService.currentUserValue.isAdmin) {
             return <Link to="/add-song"><a>Add a new song</a></Link>
         }

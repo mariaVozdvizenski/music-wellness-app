@@ -18,6 +18,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { authenticationService } from './service/AuthenticationService';
 import { PrivateRoute } from './component/PrivateRoute';
+import Register from './component/Register';
 
 
 class App extends React.Component{
@@ -46,6 +47,7 @@ class App extends React.Component{
         <Route path="/mood/:id" component={MusicListening}/>
         <Route path="/all-songs" component={AllSongs}/>
         <Route path="/login" component={LogIn}/>
+        <Route path="/register" component={Register}/>
         <PrivateRoute path="/add-song" component={AddSong}/>
         <Route path="/" component={Home}/>
         </Switch>

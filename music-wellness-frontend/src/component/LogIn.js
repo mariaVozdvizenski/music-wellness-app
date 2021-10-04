@@ -26,7 +26,6 @@ class LogIn extends React.Component {
         authenticationService.login(this.state.username, this.state.password).then(user => {
            this.setState({redirect: true});
         });
-        console.log(authenticationService.currentUser);
         event.preventDefault();
     }
 
