@@ -70,7 +70,7 @@ namespace WebApp.Controllers
         {  
             var userExists = await userManager.FindByNameAsync(model.Username);  
             if (userExists != null)  
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });  
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "This username is already taken." });  
   
             User user = new User()  
             {  
