@@ -15,17 +15,28 @@ function MusicListening() {
         const audioURL = "/songs/download?fileName=";
         const [songURLS, setSongURLS] = useState([]);
 
-        let { id } = useParams();
+        let { moodId, songId } = useParams();
 
         useEffect(() => {
-            SongService.getSongsByMood(id).then(data => {
-                let urls = getSongUrls(data)
-                setSongURLS(urls);
-            })
-            .then(() => { MoodService.getMood(id).then(data => {
-                data.moodName = data.moodName.toLowerCase();
-                setMood(data);
-            })});
+            if (songId) {
+                SongService.getSong(songId).then(data => {
+                    let urls = getSongUrl(data);
+                    setSongURLS(urls);
+                })
+                .then(() => { MoodService.getMood(moodId).then(data => {
+                    data.moodName = data.moodName.toLowerCase();
+                    setMood(data);
+                })});
+            } else if (moodId) {
+                SongService.getSongsByMood(moodId).then(data => {
+                    let urls = getSongUrls(data);
+                    setSongURLS(urls);
+                })
+                .then(() => { MoodService.getMood(moodId).then(data => {
+                    data.moodName = data.moodName.toLowerCase();
+                    setMood(data);
+                })});
+            }
         }, []);
 
         const getSongUrls = (songs) => {
@@ -39,6 +50,15 @@ function MusicListening() {
                 fullUrls.push(audioObj);
             }
             return fullUrls;
+        }
+
+        const getSongUrl = (song) => {
+            const audioObj = { 
+                musicSrc : GlobalVariables.baseURL + audioURL + song.fileName,
+                name :  song.title,
+                singer : song.artist
+            };
+            return [audioObj];
         }
 
         return (<div className="music-listening"> 

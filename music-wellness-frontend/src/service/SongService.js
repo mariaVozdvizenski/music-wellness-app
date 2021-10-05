@@ -57,6 +57,18 @@ const SongService = {
              });
 
         return response;
+    },
+
+    getSong: async function(id) {
+        const response = GlobalVariables.axios.get('/songs/' + id)
+            .then((response) => {
+                return response.data;
+            })
+            .catch(function (error) {
+                return error
+             });
+
+        return response;
     }
 
 }

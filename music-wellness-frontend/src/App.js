@@ -44,7 +44,7 @@ class App extends React.Component{
       <div className="app-container">
         <NavBar user={currentUser}></NavBar>
         <Switch>
-        <Route path="/mood/:id" component={MusicListening}/>
+        <Route path="/mood/:moodId?/:songId?" component={MusicListening}/>
         <Route path="/all-songs" component={AllSongs}/>
         <Route path="/login" component={LogIn}/>
         <Route path="/register" component={Register}/>

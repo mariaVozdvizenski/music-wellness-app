@@ -12,6 +12,7 @@
     transition: background-color 0.3s;
 }
 
+
 .song:hover {
     cursor: pointer;
     background-color: white;
