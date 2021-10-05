@@ -69,6 +69,22 @@ const SongService = {
              });
 
         return response;
+    },
+
+    updateSong: async function(song) {
+        let config = {
+            headers : authHeader()
+        }
+
+        const response = GlobalVariables.axios.put('/songs/' + song.id, song, config)
+            .then((response) => {
+                return response.data;
+            })
+            .catch(function (error) {
+                return error
+             });
+
+        return response;
     }
 
 }

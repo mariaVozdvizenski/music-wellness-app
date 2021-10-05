@@ -4,7 +4,7 @@ import NavBar from './component/NavBar';
 import AddSong from './component/AddSong';
 import LogIn from './component/LogIn';
 import Home from './component/Home';
-
+import EditDeleteSong from './component/EditDeleteSong';
 import {
   BrowserRouter as Router,
   Switch,
@@ -44,7 +44,8 @@ class App extends React.Component{
       <div className="app-container">
         <NavBar user={currentUser}></NavBar>
         <Switch>
-        <Route path="/mood/:moodId?/:songId?" component={MusicListening}/>
+        <Route path="/mood/:moodId/:songId?" component={MusicListening}/>
+        <PrivateRoute path="/edit-delete/:id" component={EditDeleteSong}/>
         <Route path="/all-songs" component={AllSongs}/>
         <Route path="/login" component={LogIn}/>
         <Route path="/register" component={Register}/>
