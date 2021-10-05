@@ -6,11 +6,13 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using Authentication;
 using Microsoft.AspNetCore.Mvc;
 using DAL.Repositories;
 using Domain;
 using DTO;
 using Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 
@@ -61,7 +63,7 @@ namespace WebApp.Controllers
 
         // PUT: api/Songs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> PutSong(int id, Song song)
         {
             if (id != song.Id)
@@ -74,14 +76,14 @@ namespace WebApp.Controllers
 
         // POST: api/Songs
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost, Authorize(Roles = UserRoles.Admin)]
         public async Task<ActionResult<Song>> PostSong(Song song)
         {
             await _repository.Add(song);
             return CreatedAtAction("GetSong", new { id = song.Id }, song);
         }
         
-        [HttpPost("upload")]
+        [HttpPost("upload"), Authorize(Roles = UserRoles.Admin)]
         public async Task<ActionResult> UploadAudio(IFormFile file)
         {
             if (file == null)
@@ -130,7 +132,7 @@ namespace WebApp.Controllers
         }
 
         // DELETE: api/Songs/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> DeleteSong(int id)
         {
             var song = await _repository.Delete(id);

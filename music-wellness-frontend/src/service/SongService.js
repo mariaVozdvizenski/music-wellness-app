@@ -1,4 +1,5 @@
-import GlobalVariables from './GlobalVariables'
+import GlobalVariables from './GlobalVariables';
+import { authHeader } from '../helpers/AuthHeader';
 
 const SongService = {
 
@@ -15,14 +16,34 @@ const SongService = {
     },
 
     uploadAudio: async function(formData) {
-        const response = GlobalVariables.axios.post('/songs/upload', formData)
+        let config = {
+            headers : authHeader()
+        }
+
+        const response = GlobalVariables.axios.post('/songs/upload', formData, config)
             .then((response) => {
                 return response.data;
             })
             .catch(function (error) {
                 return error
              });
-             
+
+        return response;
+    },
+
+    postSong: async function(song) {
+        let config = {
+            headers : authHeader()
+        }
+
+        const response = GlobalVariables.axios.post('/songs', song, config)
+            .then((response) => {
+                return response.data;
+            })
+            .catch(function (error) {
+                return error
+             });
+
         return response;
     }
 }
