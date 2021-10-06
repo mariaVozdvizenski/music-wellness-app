@@ -2,6 +2,7 @@ import React from 'react';
 import './AddSong.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import { authenticationService } from '../service/AuthenticationService';
 import { Route, Redirect } from 'react-router-dom';
 
@@ -12,10 +13,12 @@ class LogIn extends React.Component {
         this.state = {
             username: '',
             password: '',
-            redirect: false
+            redirect: false,
+            serverErrorMessage: null
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.renderAlert = this.renderAlert.bind(this);
     }
 
     componentDidMount() {
@@ -25,8 +28,16 @@ class LogIn extends React.Component {
     handleSubmit(event) {
         authenticationService.login(this.state.username, this.state.password).then(user => {
            this.setState({redirect: true});
+        }).catch(error => {
+            this.setState({serverErrorMessage: "Username or password is incorrect"})
         });
         event.preventDefault();
+    }
+
+    renderAlert() {
+        if (this.state.serverErrorMessage != null) {
+            return <Alert variant="danger"><li>{this.state.serverErrorMessage}</li></Alert>
+        }
     }
 
     handleInputChange(event) {
@@ -46,6 +57,7 @@ class LogIn extends React.Component {
         return <div className="page-content">
         <div className="background-green">
             <h2>Log In</h2>
+            {this.renderAlert()}
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <Form.Label>Username</Form.Label>
