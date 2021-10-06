@@ -75,7 +75,6 @@ const SongService = {
         let config = {
             headers : authHeader()
         }
-
         const response = GlobalVariables.axios.put('/songs/' + song.id, song, config)
             .then((response) => {
                 return response.data;
@@ -85,8 +84,37 @@ const SongService = {
              });
 
         return response;
-    }
+    },
 
+    deleteSong: async function(id) {
+        let config = {
+            headers : authHeader()
+        }
+        const response = GlobalVariables.axios.delete('/songs/' + id, config)
+            .then((response) => {
+                return response.data;
+            })
+            .catch(function (error) {
+                return error
+             });
+
+        return response;
+    },
+
+    deleteAudio: async function(fileName) {
+        let config = {
+            headers : authHeader()
+        }
+        const response = GlobalVariables.axios.delete('/songs/delete?fileName=' + fileName, config)
+            .then((response) => {
+                return response.data;
+            })
+            .catch(function (error) {
+                return error
+             });
+
+        return response;
+    }
 }
 
 export default SongService;

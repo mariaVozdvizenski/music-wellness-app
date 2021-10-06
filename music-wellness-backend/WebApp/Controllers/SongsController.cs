@@ -128,7 +128,25 @@ namespace WebApp.Controllers
             //return File(b, "audio/mpeg");
             //var b = System.IO.File.Create(filePath);
             return File(b, "audio/mpeg", true);
+        }
+        
+        [HttpDelete("delete"), Authorize(Roles = UserRoles.Admin)]
+        public async Task<ActionResult> DeleteAudio(string fileName)
+        {
+            if (fileName == null)
+            {
+                return BadRequest();
+            }
+            var filePath = Environment.CurrentDirectory + "\\Uploads\\" + fileName;
 
+            if (!System.IO.File.Exists(filePath))
+            {
+                return BadRequest();
+            }
+            
+            System.IO.File.Delete(filePath);
+
+            return NoContent();
         }
 
         // DELETE: api/Songs/5

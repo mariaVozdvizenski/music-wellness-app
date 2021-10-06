@@ -6,10 +6,11 @@ import SongService from "../service/SongService";
 import { useEffect } from "react";
 import SongForm from "./SongForm";
 import { render } from "@testing-library/react";
+import Button from 'react-bootstrap/Button';
 
 function EditDeleteSong(props) {
 
-    const [song, setSong] = useState({ title: '', artist: '', moodId: '' });
+    const [song, setSong] = useState({ title: '', artist: '', moodId: '', fileName: '' });
     const [moods, setMoods] = useState([]);
     const [validated, setValidated] = useState(false);
     const [redirect, setRedirect] = useState(false);
@@ -36,13 +37,20 @@ function EditDeleteSong(props) {
         } else {
             //let formData = new FormData();
             //formData.append("file", this.state.selectedFile);
-            console.log(song);
             SongService.updateSong(song).then(response => {
                 console.log(response);
                 props.history.push('/all-songs');
             });
         }
         setValidated(true);
+    }
+
+    const handleDelete = (event) => {
+        SongService.deleteAudio(song.fileName).then(response => {
+            SongService.deleteSong(id).then(response => {
+                props.history.push('/all-songs');
+            });
+        });
     }
 
     const handleInputChange = (event) => {
@@ -55,11 +63,6 @@ function EditDeleteSong(props) {
         setSong(song);
     }
 
-    const Redirect = () => {
-        if (redirect) {
-            return <Redirect to="all-songs"></Redirect>
-        }
-    }
 
     return (<div className="page-content">
         <div className="background-green">
@@ -73,7 +76,8 @@ function EditDeleteSong(props) {
                 moods={moods}
                 title={song.title}
                 artist={song.artist}
-                editForm={true} />
+                editForm={true}
+                handleDelete={handleDelete} />
         </div>
     </div>)
 }
