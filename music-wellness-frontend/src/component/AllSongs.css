@@ -1,6 +1,6 @@
 .page-content {
     margin: auto;
-    padding: 30px;
+    padding: 20px;
     height: inherit;
 }
 
@@ -35,4 +35,19 @@ a:visited {
     flex-wrap: wrap;
     margin: auto;
     margin-top: 20px;
+}
+
+.song-header {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 60%;
+    min-width: 190px;
+}
+
+.select, .label {
+    font-size: 15px;
+}
+
+.select {
+    color: black;
 }
