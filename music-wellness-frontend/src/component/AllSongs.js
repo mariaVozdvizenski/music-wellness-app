@@ -40,7 +40,7 @@ class AllSongs extends React.Component {
             <div className="all-songs">
                 { this.renderAddSongLink() }
                 <div className="list-of-songs">
-                    { this.state.songs.map((s) => <Song song={s}></Song>) }
+                    { this.state.songs.map((s) => <Song song={s} key={s.id}></Song>) }
                 </div>
             </div>
         </div>

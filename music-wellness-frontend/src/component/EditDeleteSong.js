@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import SongForm from "./SongForm";
 import { render } from "@testing-library/react";
 
-function EditDeleteSong() {
+function EditDeleteSong(props) {
 
     const [song, setSong] = useState({ title: '', artist: '', moodId: '' });
     const [moods, setMoods] = useState([]);
@@ -39,7 +39,7 @@ function EditDeleteSong() {
             console.log(song);
             SongService.updateSong(song).then(response => {
                 console.log(response);
-                setRedirect(true);
+                props.history.push('/all-songs');
             });
         }
         setValidated(true);
@@ -61,7 +61,7 @@ function EditDeleteSong() {
         }
     }
 
-    return <div className="page-content">
+    return (<div className="page-content">
         <div className="background-green">
             <h2>Edit</h2>
             <SongForm
@@ -75,7 +75,7 @@ function EditDeleteSong() {
                 artist={song.artist}
                 editForm={true} />
         </div>
-    </div>
+    </div>)
 }
 
 export default EditDeleteSong;
