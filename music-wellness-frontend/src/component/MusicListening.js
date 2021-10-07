@@ -64,7 +64,7 @@ function MusicListening() {
         return (<div className="music-listening"> 
             <div className="music-listening-bg"></div>
             <h1>Creating a {mood.moodName} mood...</h1>
-            <Gif name="energetic" source="An Artist"></Gif>
+            <Gif name="happy" source="An Artist"></Gif>
             <MusicPlayer songs={songURLS}></MusicPlayer>
         </div>
         );

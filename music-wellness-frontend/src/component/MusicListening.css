@@ -22,4 +22,14 @@
     z-index: -1;
 }
 
+@media only screen and (max-width: 768px){
+    .music-listening-bg {
+        width: 0px;
+    } 
+
+    .music-listening > h1 {
+        background-color: #C3D480;
+    }
+}
+
 
