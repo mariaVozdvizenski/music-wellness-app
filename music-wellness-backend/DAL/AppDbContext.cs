@@ -10,6 +10,7 @@ namespace DAL
     public class AppDbContext : IdentityDbContext<User, Role, int>
     {
         public DbSet<Song> Songs { get; set; }
+        public DbSet<SongRating> SongRatings { get; set; }
         public DbSet<Mood> Moods { get; set; }
         public DbSet<FavouriteSong> FavouriteSongs { get; set; }
         

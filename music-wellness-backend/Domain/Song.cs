@@ -20,5 +20,8 @@ namespace Domain
         public Mood Mood { get; set; }
 
         public ICollection<FavouriteSong> FavouriteSongs { get; set; }
+        
+        public ICollection<SongRating> SongRatings { get; set; }
+
     }
 }

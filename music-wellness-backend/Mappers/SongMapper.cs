@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Domain;
 using DTO;
 
@@ -15,7 +16,9 @@ namespace Mappers
                 FileName = entity.FileName,
                 MoodName = entity.Mood.MoodName,
                 Title = entity.Title,
-                MoodId = entity.MoodId
+                MoodId = entity.MoodId,
+                RatingCount = entity.SongRatings.Count,
+                AverageRating = entity.SongRatings.Average(sr => sr.Rating)
             };
         }
 

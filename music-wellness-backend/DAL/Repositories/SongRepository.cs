@@ -16,8 +16,17 @@ namespace DAL.Repositories
         
         public new async Task<List<Song>> GetAll()
         {
-            return await _context.Songs.Include(s => s.Mood).ToListAsync();
-        }        
+            return await _context.Songs.Include(s => s.Mood)
+                                        .Include(s => s.SongRatings).ToListAsync();
+        }   
+        
+        public new async Task<Song> Get(int id)
+        {
+            return await _context.Songs.Where(s => s.Id == id)
+                .Include(s => s.Mood)
+                .Include(s => s.SongRatings)
+                .FirstOrDefaultAsync();
+        }   
         
         public async Task<List<Song>> GetSongsByMoodId(int? moodId)
         {
@@ -26,7 +35,10 @@ namespace DAL.Repositories
             {
                 return null;
             } 
-            return await _context.Songs.Where(s => s.MoodId == moodId).Include(s => s.Mood).ToListAsync();
+            return await _context.Songs.Where(s => s.MoodId == moodId)
+                .Include(s => s.Mood)
+                .Include(s => s.SongRatings)
+                .ToListAsync();
         }
     }
 }

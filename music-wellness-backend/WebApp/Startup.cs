@@ -56,6 +56,7 @@ namespace WebApp
             
             services.AddScoped<MoodRepository>();
             services.AddScoped<SongRepository>();
+            services.AddScoped<SongRatingRepository>();
 
             // For Identity  
             services.AddIdentity<User, Role>(options =>

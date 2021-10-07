@@ -49,16 +49,16 @@ namespace WebApp.Controllers
 
         // GET: api/Songs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Song>> GetSong(int id)
+        public async Task<ActionResult<SongDTO>> GetSong(int id)
         {
             var song = await _repository.Get(id);
-
+            
             if (song == null)
             {
                 return NotFound();
             }
-
-            return song;
+            
+            return _mapper.EntityToDto(song);
         }
 
         // PUT: api/Songs/5

@@ -9,7 +9,10 @@ namespace DTO
         public string Artist { get; set; }
         public string FileName { get; set; }
         public string MoodName { get; set; }
-        
         public int MoodId { get; set; }
+
+        public int RatingCount { get; set; }
+        
+        public double AverageRating { get; set; }
     }
 }
