@@ -28,9 +28,11 @@ class MusicPlayer extends React.Component {
         console.log('onDestroyed:', currentPlayId, audioLists, audioInfo)
     }
 
+
     render() {
         return <div>
             <ReactJkMusicPlayer 
+            onAudioListsChange={this.props.onAudioListsChange}
             loadAudioErrorPlayNext={true} 
             onDestroyed={this.onDestroyed} 
             autoHiddenCover={true} 
@@ -39,7 +41,8 @@ class MusicPlayer extends React.Component {
             mode="full" 
             audioLists={this.props.songs} 
             remove={false} 
-            showDownload={false}>
+            showDownload={false}
+            onPlayIndexChange={this.props.onPlayIndexChange}>
             </ReactJkMusicPlayer>
         </div>
     }

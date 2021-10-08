@@ -17,8 +17,8 @@ namespace Mappers
                 MoodName = entity.Mood.MoodName,
                 Title = entity.Title,
                 MoodId = entity.MoodId,
-                RatingCount = entity.SongRatings.Count,
-                AverageRating = entity.SongRatings.Average(sr => sr.Rating)
+                RatingCount = entity.SongRatings?.Count,
+                AverageRating = entity.SongRatings?.Average(sr => sr?.Rating)
             };
         }
 

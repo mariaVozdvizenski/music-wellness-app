@@ -11,8 +11,8 @@ namespace DTO
         public string MoodName { get; set; }
         public int MoodId { get; set; }
 
-        public int RatingCount { get; set; }
+        public int? RatingCount { get; set; }
         
-        public double AverageRating { get; set; }
+        public double? AverageRating { get; set; }
     }
 }

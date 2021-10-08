@@ -30,6 +30,7 @@ class AllSongs extends React.Component {
     componentDidMount() {
         SongService.getAllSongs().then((data) => {
             this.setState({ songs: data });
+            console.log(this.state.songs);
         });
         MoodService.getAllMoods().then((data) => {
             this.setState({ moods: data });
