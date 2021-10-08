@@ -8,13 +8,14 @@ import {
 } from "react-router-dom";
 import MoodService from '../service/MoodService';
 import GlobalVariables from '../service/GlobalVariables';
+import Rating from '@mui/material/Rating';
 
 
 function MusicListening() {
         const [mood, setMood] = useState({moodName: ""});
         const audioURL = "/songs/download?fileName=";
         const [songURLS, setSongURLS] = useState([]);
-        const [currentSong, setCurrentSong] = useState({});
+        const [currentSong, setCurrentSong] = useState({averageRating : 0});
         const [songs, setSongs] = useState([]);
         const [musicPlayerAudioList, setMusicPlayerAudioList] = useState([]);
 
@@ -53,7 +54,7 @@ function MusicListening() {
                     name :  songs[i].title,
                     singer : songs[i].artist,
                     id : songs[i].id,
-                    avgRating : songs[i].averageRating,
+                    averageRating : songs[i].averageRating,
                     ratingCount: songs[i].ratingCount,
                     title : songs[i].title,
                     artist : songs[i].artist
@@ -122,10 +123,35 @@ function MusicListening() {
             }
         }
 
+        const getSongRating = () => {
+            return currentSong.averageRating;
+        }
+
+        const renderRatingCount = () => {
+            if (currentSong.ratingCount == 0) {
+                return "No ratings yet."
+            }
+            return currentSong.ratingCount + " rating(s)."
+        }
+
+        const onRatingChange = (event) => {
+            console.log(event);
+        }
+
         return (<div className="music-listening"> 
             <div className="music-listening-bg"></div>
             <h1>{renderMoodInfo()}</h1>
             <p>{renderSongInfo()}</p>
+            <div>
+                <div>
+                <Rating size="medium" onChange={onRatingChange} value={getSongRating()} readOnly={true}/>
+                <span>{renderRatingCount()}</span>
+                </div>
+                <div>
+                <Rating size="medium" onChange={onRatingChange} value={0}/> 
+                </div>
+                <span>{"Rate if this song made you feel " + mood.moodName}</span>
+            </div>
             <Gif name="happy" source="An Artist"></Gif>
             <MusicPlayer 
                 onAudioListsChange={onAudioListsChange}
