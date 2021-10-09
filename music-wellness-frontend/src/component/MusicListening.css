@@ -22,12 +22,25 @@
     z-index: -1;
 }
 
+.ratings {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.rating {
+    display: flex;
+    font-size: 15px;
+    align-items: center;
+    margin-right: 15px;
+}
+
 @media only screen and (max-width: 768px){
     .music-listening-bg {
         width: 0px;
     } 
 
-    .music-listening > h1 {
+    .music-info {
         background-color: #C3D480;
     }
 }
