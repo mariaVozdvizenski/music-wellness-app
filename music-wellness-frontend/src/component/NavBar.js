@@ -2,20 +2,26 @@ import NavItem from './NavItem';
 import React from 'react';
 import NavPicture from './NavPicture';
 import { authenticationService } from './../service/AuthenticationService';
+import { Route, Redirect } from 'react-router-dom';
+
 
 class NavBar extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            redirect: false
+        };
         this.renderUserLogIn = this.renderUserLogIn.bind(this);
+        this.logOut = this.logOut.bind(this);
     }
 
     logOut() {
         authenticationService.logout();
+        this.setState({redirect: true});
     }
 
     renderUserLogIn() {
-        console.log(this.props.user)
         if (this.props.user) {
             return (
                 <React.Fragment>

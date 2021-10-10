@@ -30,10 +30,11 @@ function MusicListening() {
                     let urls = getSongUrl(data);
                     setSongURLS(urls);
                     setCurrentSong({...data});
-                    UserRatingService.getUserSongRating(authenticationService.currentUserValue.id, data.id).then(rating => {
-                        console.log(rating);
-                        setUserSongRating(rating);
-                    })
+                    if (authenticationService.currentUserValue != null) {
+                        UserRatingService.getUserSongRating(authenticationService.currentUserValue.id, data.id).then(rating => {
+                            setUserSongRating(rating);
+                        });     
+                    }
                 })
                 .then(() => { MoodService.getMood(moodId).then(data => {
                     data.moodName = data.moodName.toLowerCase();
@@ -45,16 +46,18 @@ function MusicListening() {
                     let urls = getSongUrls(data);
                     setSongURLS(urls);
                     setCurrentSong({...data[0]});
-                    UserRatingService.getUserSongRating(authenticationService.currentUserValue.id, data[0].id).then(rating => {
-                        console.log(rating);
-                        setUserSongRating(rating);
-                })})
+                    if (authenticationService.currentUserValue != null) {
+                        UserRatingService.getUserSongRating(authenticationService.currentUserValue.id, data[0].id).then(rating => {
+                            setUserSongRating(rating);
+                        });     
+                    }
+                    })
                 .then(() => { MoodService.getMood(moodId).then(data => {
                     data.moodName = data.moodName.toLowerCase();
                     setMood(data);
                 })})
             }
-        }, []);
+        }, [authenticationService]);
 
         const getSongUrls = (songs) => {
             let fullUrls = [];
@@ -104,14 +107,18 @@ function MusicListening() {
         const onPlayIndexChange = (playIndex) => {
             if (musicPlayerAudioList.length == 0) {
                 setCurrentSong(songs[playIndex]);
-                UserRatingService.getUserSongRating(authenticationService.currentUserValue.id, songs[playIndex].id).then((rating) => {
-                    setUserSongRating(rating);
-                });
+                if (authenticationService.currentUserValue !== null) {
+                    UserRatingService.getUserSongRating(authenticationService.currentUserValue.id, songs[playIndex].id).then((rating) => {
+                        setUserSongRating(rating);
+                    });
+                }
             } else {
                 setCurrentSong(musicPlayerAudioList[playIndex]);
-                UserRatingService.getUserSongRating(authenticationService.currentUserValue.id, musicPlayerAudioList[playIndex].id).then((rating) => {
-                    setUserSongRating(rating);
-                });
+                if (authenticationService.currentUserValue !== null) {
+                    UserRatingService.getUserSongRating(authenticationService.currentUserValue.id, musicPlayerAudioList[playIndex].id).then((rating) => {
+                        setUserSongRating(rating);
+                    });
+                } 
             }
         }
 
@@ -164,6 +171,10 @@ function MusicListening() {
             } 
         }
 
+        const renderUserRatingMessage = () => {
+            return authenticationService.currentUserValue !== null ? "How " + mood.moodName + " did this song make you feel?" : "Please log in to rate this song"
+        }
+
         return (<div className="music-listening"> 
             <div className="music-listening-bg"></div>
             <div className="music-info">
@@ -176,8 +187,8 @@ function MusicListening() {
                 <span>{renderRatingCount()}</span>
                 </div>
                 <div className="rating">
-                <span>{"How " + mood.moodName + " did this song make you feel?"}</span>
-                <Rating size="medium" onChange={onRatingChange} value={userSongRating.rating}/> 
+                <span>{renderUserRatingMessage()}</span>
+                <Rating size="medium" disabled={authenticationService.currentUserValue !== null ? false : true} onChange={onRatingChange} value={userSongRating.rating}/> 
                 </div>
             </div>
             <Gif name="happy" source="An Artist"></Gif>
