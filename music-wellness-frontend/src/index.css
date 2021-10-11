@@ -11,6 +11,7 @@ html {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+
 body {
   background-color: #F1E4D4;
   height: 100vh;
@@ -68,9 +69,12 @@ body {
 }
 
 h1 {
-  font-size: 72px;
   font-weight: 400;
   font-family: 'Playfair Display';
+}
+
+.welcome {
+  font-size: 72px;
 }
 
 h2 {
@@ -137,9 +141,12 @@ a:visited {
   border-radius: 5px;
   font-family: inherit;
   text-shadow: inherit;
-  margin-right: 15px;
   margin-bottom: 15px;
   transition: 0.3s;
+}
+
+.mood-li {
+  margin-right: 15px;
 }
 
 .mood-button:hover {

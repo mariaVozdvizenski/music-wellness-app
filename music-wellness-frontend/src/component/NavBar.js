@@ -46,10 +46,12 @@ class NavBar extends React.Component {
     render() {
         return <div className="nav">
             <NavPicture></NavPicture>
+            <NavItem url="/" name="Home"></NavItem>
+            <NavItem url="/all-songs" name="All Songs"></NavItem>
             {
              this.renderUserLogIn()
             } 
-            <NavItem url="/all-songs" name="All Songs"></NavItem>
+            <NavItem url="/credits" name="Credits"></NavItem>
         </div>
     }
 }

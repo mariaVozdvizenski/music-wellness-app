@@ -8,7 +8,7 @@ class MoodButton extends React.Component {
     }
 
     render() {
-        return <li>
+        return <li className="mood-li">
             <Link to={"/mood/" + this.props.id}><button className="mood-button">{this.props.name}</button></Link>
             </li>
     }

@@ -1,6 +1,8 @@
 import React from 'react';
 import './Song.css';
 import { authenticationService } from '../service/AuthenticationService';
+import Rating from '@mui/material/Rating';
+
 
 import {
     Link,
@@ -20,11 +22,19 @@ class Song extends React.Component {
         }  
     }
 
+    displaySongRating() {
+        if (this.props.song.averageRating !== null) {
+            return this.props.song.averageRating + " / 5";
+        }
+        return "No ratings yet"
+    }
+
     render() {
         return <Link className="song-link" to={"/mood/" + this.props.song.moodId + "/" + this.props.song.id}><div className="song">
             <div className="song-info">
             <h2>{this.props.song.title}</h2>
             <p className="song-mood">{this.props.song.moodName.toUpperCase()}</p>
+            <p className="song-rating">{this.displaySongRating()}</p>
             </div>
             <div>
             {

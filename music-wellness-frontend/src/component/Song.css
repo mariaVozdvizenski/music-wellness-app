@@ -1,5 +1,5 @@
 .song {
-    height: 100px;
+    height: 105px;
     background-color: #F1E4D4;
     min-width: 100px;
     margin-bottom: 15px;
@@ -19,7 +19,6 @@
 }
 
 .song-info {
-    height: 50%;
     text-align: center;
     color: black;
 }
@@ -29,13 +28,10 @@
     font-size: 19px;
 }
 
-.song-info > p {
-    font-size: 12px;
-    margin-bottom: 0;
-}
-
 .song-mood {
     margin-top: 5px;
+    font-size: 12px;
+    margin-bottom: 0;
 }
 
 .edit-button {
@@ -44,3 +40,9 @@
     font-size: 13px;
     background-color: #E19E9E;
 }
+
+.song-rating {
+    font-size: 10px;
+    margin-bottom: 0;
+}
+

@@ -10,7 +10,7 @@ class Home extends React.Component {
     render() {
         return <div className="page-content-home">
             <div className="home-background"></div>
-            <h1>Welcome</h1>
+            <h1 className="welcome">Welcome</h1>
             <p>How would you like to feel right now?</p>
             <MoodList></MoodList>
         </div>
