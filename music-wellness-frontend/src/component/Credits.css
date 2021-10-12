@@ -1,0 +1,25 @@
+.credits {
+    display: flex;
+    justify-content: center;
+}
+
+h3 {
+    font-family: 'Playfair Display';
+}
+
+.credits-background {
+    width: 90%;
+    background-color: rgb(223 218 175);
+    padding: 20px;
+    border-radius: 5px;
+    height: fit-content;
+}
+
+p, .license-link {
+    font-size: 15px;
+}
+
+.license {
+    font-weight: bold;
+}
+
