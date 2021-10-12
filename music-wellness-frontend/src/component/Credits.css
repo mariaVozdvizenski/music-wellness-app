@@ -15,7 +15,7 @@ h3 {
     height: fit-content;
 }
 
-p, .license-link {
+.credits-background > p, .license-link {
     font-size: 15px;
 }
 
