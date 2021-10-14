@@ -9,11 +9,11 @@ namespace Extensions
 {
     public static class DataInitializers
     {
-        public static void SeedData(AppDbContext context, UserManager<User> userManager)
+        public static void SeedData(AppDbContext context, UserManager<User> userManager, RoleManager<Role> roleManager)
         {
             AddMoods(context);
             AddSongs(context);
-            AddAdmin(userManager);
+            AddAdmin(userManager, roleManager);
         }
         
         private static void AddMoods(AppDbContext context)
@@ -55,7 +55,7 @@ namespace Extensions
             AddDataToDb(moods, context);
         }
 
-        private static void AddAdmin(UserManager<User> userManager)
+        private static async void AddAdmin(UserManager<User> userManager, RoleManager<Role> roleManager)
         {
             User user = new User()
             {
@@ -64,10 +64,17 @@ namespace Extensions
             
             if (userManager.FindByNameAsync(user.UserName).Result == null)
             {
+                if (!await roleManager.RoleExistsAsync(UserRoles.Admin))  
+                    await roleManager.CreateAsync(new Role{Name = UserRoles.Admin});  
+                if (!await roleManager.RoleExistsAsync(UserRoles.User))  
+                    await roleManager.CreateAsync(new Role{Name = UserRoles.User});  
+                
                 var result = userManager.CreateAsync(user, "1234").Result;
+                
                 if (result.Succeeded)
                 {
-                    userManager.AddToRoleAsync(user, UserRoles.Admin);
+                    await userManager.AddToRoleAsync(user, UserRoles.Admin);
+                    await userManager.AddToRoleAsync(user, UserRoles.User);
                 }
             }
         }

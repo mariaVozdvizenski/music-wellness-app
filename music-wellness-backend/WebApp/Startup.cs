@@ -119,8 +119,9 @@ namespace WebApp
                 .CreateScope();
             
             using var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
+            using var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<Role>>();
 
-            DataInitializers.SeedData(context, userManager);
+            DataInitializers.SeedData(context, userManager, roleManager);
         }
     }
 }
