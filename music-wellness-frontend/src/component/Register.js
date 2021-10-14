@@ -1,6 +1,6 @@
 import React from 'react';
 import './AddSong.css';
-import {Alert} from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { authenticationService } from '../service/AuthenticationService';
@@ -25,6 +25,8 @@ class Register extends React.Component {
         this.setValidationErrors = this.setValidationErrors.bind(this);
         this.setServerErrors = this.setServerErrors.bind(this);
         this.displayAlert = this.displayAlert.bind(this);
+        this.currentUserIsLoggedInAndNotAnAdmin = this.currentUserIsLoggedInAndNotAnAdmin.bind(this);
+        this.registerUser = this.registerUser.bind(this);
     }
 
     componentDidMount() {
@@ -32,16 +34,32 @@ class Register extends React.Component {
     }
 
     handleSubmit(event) {
+        if (authenticationService.currentUserValue) {
+            authenticationService.registerAdmin(this.state.username, this.state.password).then(message => {
+            })
+                .then(() => authenticationService.login(this.state.username, this.state.password)).then(data => {
+                    this.setState({ redirect: true });
+                })
+                .catch(err => {
+                    this.setState({ serverErrorMessage: err });
+                    this.checkForErrors();
+                });
+            event.preventDefault();
+        } else {
+            this.registerUser(event);
+        }
+    }
+
+    registerUser(event) {
         authenticationService.register(this.state.username, this.state.password).then(message => {
-           console.log(message);
         })
-        .then(() => authenticationService.login(this.state.username, this.state.password)).then(data => {
-            this.setState({redirect : true})
-        })
-        .catch(err => {
-            this.setState({serverErrorMessage : err});
-            this.checkForErrors();
-        });
+            .then(() => authenticationService.login(this.state.username, this.state.password)).then(data => {
+                this.setState({ redirect: true });
+            })
+            .catch(err => {
+                this.setState({ serverErrorMessage: err });
+                this.checkForErrors();
+            });
         event.preventDefault();
     }
 
@@ -67,20 +85,22 @@ class Register extends React.Component {
             passwordError = "Password should be at least 4 characters long."
         }
         if (usernameError !== "" || passwordError !== "") {
-            this.setState({buttonDisabled : true});
+            this.setState({ buttonDisabled: true });
         }
-        this.setState({validationErrorMessages : {
-            username : usernameError, 
-            password : passwordError
-        }});
+        this.setState({
+            validationErrorMessages: {
+                username: usernameError,
+                password: passwordError
+            }
+        });
     }
 
     displayAlert() {
         if (this.state.validationErrorMessages !== null) {
-            if (this.state.validationErrorMessages.username !== '' || this.state.validationErrorMessages.password !== ''){
+            if (this.state.validationErrorMessages.username !== '' || this.state.validationErrorMessages.password !== '') {
                 return true;
             }
-        }        
+        }
         if (this.state.serverErrorMessage) {
             return true;
         }
@@ -98,43 +118,49 @@ class Register extends React.Component {
         }
         if (this.state.validationErrorMessages !== null) {
             return (<span>
-                { this.state.validationErrorMessages.username && <li>{this.state.validationErrorMessages.username}</li>}
-                { this.state.validationErrorMessages.password && <li>{this.state.validationErrorMessages.password}</li>}
+                {this.state.validationErrorMessages.username && <li>{this.state.validationErrorMessages.username}</li>}
+                {this.state.validationErrorMessages.password && <li>{this.state.validationErrorMessages.password}</li>}
             </span>);
         }
     }
 
     setServerErrors() {
         if (this.state.serverErrorMessage) {
-            this.setState({buttonDisabled : true});
+            this.setState({ buttonDisabled: true });
         } else {
-            this.setState({buttonDisabled : false});
+            this.setState({ buttonDisabled: false });
         }
     }
 
+    currentUserIsLoggedInAndNotAnAdmin() {
+        return authenticationService.currentUserValue !== null && !authenticationService.currentUserValue.isAdmin;
+    }
+
     render() {
-        if (this.state.redirect == true || authenticationService.currentUserValue) {
+        if (this.state.redirect == true || this.currentUserIsLoggedInAndNotAnAdmin()) {
             return <Redirect to="/"></Redirect>
         }
         return <div className="page-content">
-        <div className="background-green">
-            <h2>Register</h2>
-            { this.displayAlert() && <Alert variant="danger">{ this.displayErrorMessage() }</Alert>}
-            <Form onSubmit={this.handleSubmit}>
-                <Form.Group>
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control value={this.state.username} onChange={this.handleInputChange} name="username" type="text"/>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control value={this.state.password} onChange={this.handleInputChange} name="password" type="password"/>
-                </Form.Group>
-                <Button variant="primary" type="submit" disabled={this.state.buttonDisabled}>
-                    Sign Up
-                </Button>
-            </Form>
+            <div className="background-green">
+                {
+                    authenticationService.currentUserValue ? <h2>Register Admin</h2> : <h2>Register</h2>
+                }
+                {this.displayAlert() && <Alert variant="danger">{this.displayErrorMessage()}</Alert>}
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Group>
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control value={this.state.username} onChange={this.handleInputChange} name="username" type="text" />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control value={this.state.password} onChange={this.handleInputChange} name="password" type="password" />
+                    </Form.Group>
+                    <Button variant="primary" type="submit" disabled={this.state.buttonDisabled}>
+                        Sign Up
+                    </Button>
+                </Form>
+            </div>
         </div>
-    </div>
     }
 }
 

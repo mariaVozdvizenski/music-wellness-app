@@ -23,6 +23,10 @@ class NavBar extends React.Component {
 
     renderUserLogIn() {
         if (this.props.user) {
+            let register;
+            if (this.props.user.isAdmin) {
+                //register = <NavItem url="/register" name="Register admin"></NavItem>
+            }
             return (
                 <React.Fragment>
                     <div className="nav-item">
@@ -31,6 +35,9 @@ class NavBar extends React.Component {
                     <div className="nav-item">
                         <a onClick={this.logOut}>Logout</a>
                     </div>
+                    {
+                        register
+                    }
                 </React.Fragment>
             )
         } else if (!this.props.user) {

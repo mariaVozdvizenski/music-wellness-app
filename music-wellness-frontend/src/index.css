@@ -50,13 +50,14 @@ body {
   align-items: center;
 }
 
+.nav .nav-item:not(:first-child) {
+  margin-left: 15px;
+}
+
 .nav-wrapper {
   flex: 2;
 }
 
-.nav-item {
-  margin-left: 15px;
-}
 
 .nav-item > p {
   margin-bottom: 0;
@@ -168,6 +169,11 @@ a:visited {
   .page-content-home {
     margin-left: 0;
   }
+  .nav-wrapper {
+    flex: none;
+    min-height: 61px;
+    min-width: 61px;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -184,10 +190,6 @@ a:visited {
 
   .nav-item {
     margin-bottom: 5px;
-  }
-
-  .nav-wrapper {
-    flex: none;
   }
 
   .nav-wrapper {
