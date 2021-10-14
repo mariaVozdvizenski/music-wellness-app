@@ -1,17 +1,21 @@
 ﻿using System.Linq;
+using Authentication;
 using DAL;
 using Domain;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Extensions
 {
     public static class DataInitializers
     {
-        public static void SeedData(AppDbContext context)
+        public static void SeedData(AppDbContext context, UserManager<User> userManager)
         {
             AddMoods(context);
             AddSongs(context);
+            AddAdmin(userManager);
         }
+        
         private static void AddMoods(AppDbContext context)
         {
             var moods = new Mood[]
@@ -49,6 +53,23 @@ namespace Extensions
             };
             
             AddDataToDb(moods, context);
+        }
+
+        private static void AddAdmin(UserManager<User> userManager)
+        {
+            User user = new User()
+            {
+                UserName = "admin"
+            };
+            
+            if (userManager.FindByNameAsync(user.UserName).Result == null)
+            {
+                var result = userManager.CreateAsync(user, "1234").Result;
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, UserRoles.Admin);
+                }
+            }
         }
         
         private static void AddSongs(AppDbContext context)

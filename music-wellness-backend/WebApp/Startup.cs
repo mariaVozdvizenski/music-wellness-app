@@ -53,7 +53,6 @@ namespace WebApp
                 opt.UseMySQL(Configuration.GetConnectionString("MySQLConnString")));
             
             services.AddScoped<SongMapper>();
-            
             services.AddScoped<MoodRepository>();
             services.AddScoped<SongRepository>();
             services.AddScoped<SongRatingRepository>();
@@ -91,9 +90,9 @@ namespace WebApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<User> userManager)
         {
-            UpdateDatabase(app);
+            UpdateDatabase(app, userManager);
             
             if (env.IsDevelopment())
             {
@@ -113,15 +112,15 @@ namespace WebApp
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
 
-        private static void UpdateDatabase(IApplicationBuilder app)
+        private static void UpdateDatabase(IApplicationBuilder app, UserManager<User> userManager)
         {
             using var serviceScope = app.ApplicationServices
                 .GetRequiredService<IServiceScopeFactory>()
                 .CreateScope();
             
             using var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
-            
-            DataInitializers.SeedData(context);
+
+            DataInitializers.SeedData(context, userManager);
         }
     }
 }
