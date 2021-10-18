@@ -15,34 +15,33 @@ class MusicPlayer extends React.Component {
     }
 
     componentDidMount() {
-        this.setState( {audioList : this.getSongUrls()} )
+        this.setState({ audioList: this.getSongUrls() })
     }
 
     getSongUrls() {
-        let filenames = this.props.songs.map(s => s.fileName); 
+        let filenames = this.props.songs.map(s => s.fileName);
         let fullURLS = filenames.map(f => GlobalVariables.baseURL + this.audioURL + f)
         return fullURLS;
     }
 
     onDestroyed = (currentPlayId, audioLists, audioInfo) => {
-        console.log('onDestroyed:', currentPlayId, audioLists, audioInfo)
     }
 
 
     render() {
         return <div>
-            <ReactJkMusicPlayer 
-            onAudioListsChange={this.props.onAudioListsChange}
-            loadAudioErrorPlayNext={true} 
-            onDestroyed={this.onDestroyed} 
-            autoHiddenCover={true} 
-            defaultVolume={0.8}
-            theme="dark" 
-            mode="full" 
-            audioLists={this.props.songs} 
-            remove={false} 
-            showDownload={false}
-            onPlayIndexChange={this.props.onPlayIndexChange}>
+            <ReactJkMusicPlayer
+                onAudioListsChange={this.props.onAudioListsChange}
+                loadAudioErrorPlayNext={true}
+                onDestroyed={this.onDestroyed}
+                autoHiddenCover={true}
+                defaultVolume={0.8}
+                theme="dark"
+                mode="full"
+                audioLists={this.props.songs}
+                remove={false}
+                showDownload={false}
+                onPlayIndexChange={this.props.onPlayIndexChange}>
             </ReactJkMusicPlayer>
         </div>
     }

@@ -8,15 +8,12 @@ class MoodList extends React.Component {
         super(props);
         this.state = { 
             moods: [],
-            error: false
         };
     }
 
     componentDidMount() {
         MoodService.getAllMoods().then(data => {
             this.setState({moods: data})
-        }).catch(error => {
-            this.setState({error: true})
         })
     }
     
