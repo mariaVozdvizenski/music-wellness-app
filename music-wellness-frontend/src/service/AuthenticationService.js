@@ -25,7 +25,6 @@ function login(username, password) {
     return fetch(`${GlobalVariables.baseURL}/authenticate/login`, requestOptions)
         .then(handleResponse)
         .then(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
             currentUserSubject.next(user);
 

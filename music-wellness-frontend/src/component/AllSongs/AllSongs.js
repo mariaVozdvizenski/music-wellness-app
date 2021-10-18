@@ -1,13 +1,13 @@
 import React from 'react';
 import './AllSongs.css';
-import Song from './Song';
+import Song from '../Song';
 import { Link } from 'react-router-dom';
-import { authenticationService } from '../service/AuthenticationService';
-import SongService from '../service/SongService';
-import MoodService from '../service/MoodService';
+import { authenticationService } from '../../service/AuthenticationService';
+import SongService from '../../service/SongService';
+import MoodService from '../../service/MoodService';
 import Select from 'react-select';
 import { Form, Row, Col } from 'react-bootstrap';
-import Search from './Search';
+import Search from '../Search';
 
 
 class AllSongs extends React.Component {

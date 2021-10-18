@@ -9,10 +9,11 @@ h3 {
 
 .credits-background {
     width: 90%;
-    background-color: rgb(223 218 175);
+    background-color: rgb(185 178 128);
     padding: 20px;
     border-radius: 5px;
     height: fit-content;
+    border: 10px #C3D480 solid;
 }
 
 .credits-background > p, .license-link {

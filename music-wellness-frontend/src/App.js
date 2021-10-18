@@ -12,7 +12,7 @@ import {
   Link,
   useParams
 } from "react-router-dom";
-import AllSongs from './component/AllSongs';
+import AllSongs from './component/AllSongs/AllSongs';
 import MusicListening from './component/MusicListening';
 import React from 'react';
 import { render } from '@testing-library/react';
@@ -22,13 +22,13 @@ import Register from './component/Register';
 import Credits from './component/Credits';
 
 
-class App extends React.Component{
+class App extends React.Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-        currentUser: null
+      currentUser: null
     };
   }
 
@@ -41,22 +41,23 @@ class App extends React.Component{
 
     const { currentUser } = this.state;
 
-    return (<Router>
-      <div className="app-container">
-        <NavBar user={currentUser}></NavBar>
-        <Switch>
-        <Route path="/mood/:moodId/:songId?" component={MusicListening}/>
-        <PrivateRoute path="/edit-delete/:id" component={EditDeleteSong}/>
-        <Route path="/all-songs" component={AllSongs}/>
-        <Route path="/login" component={LogIn}/>
-        <Route path="/register" component={Register}/>
-        <Route path="/credits" component={Credits}/>
-        <PrivateRoute path="/add-song" component={AddSong}/>
-        <Route path="/" component={Home}/>
-        </Switch>
-    </div>
-    </Router>
-  )
+    return (
+      <Router>
+        <div className="app-container">
+          <NavBar user={currentUser}></NavBar>
+          <Switch>
+            <Route path="/mood/:moodId/:songId?" component={MusicListening} />
+            <PrivateRoute path="/edit-delete/:id" component={EditDeleteSong} />
+            <Route path="/all-songs" component={AllSongs} />
+            <Route path="/login" component={LogIn} />
+            <Route path="/register" component={Register} />
+            <Route path="/credits" component={Credits} />
+            <PrivateRoute path="/add-song" component={AddSong} />
+            <Route path="/" component={Home} />
+          </Switch>
+        </div>
+      </Router>
+    )
   }
 }
 
