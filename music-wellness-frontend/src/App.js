@@ -21,6 +21,7 @@ import { PrivateRoute } from './component/PrivateRoute';
 import Register from './component/Register';
 import Credits from './component/Credits';
 import NotFound from './component/NotFound/NotFound';
+import AdminRegister from './component/AdminRegister/AdminRegister';
 
 
 class App extends React.Component {
@@ -52,6 +53,7 @@ class App extends React.Component {
             <Route path="/all-songs" component={AllSongs} />
             <Route path="/login" component={LogIn} />
             <Route path="/register" component={Register} />
+            <PrivateRoute path="/register-admin" component={AdminRegister} />
             <Route path="/credits" component={Credits} />
             <PrivateRoute path="/add-song" component={AddSong} />
             <Route exact path="/" component={Home} />

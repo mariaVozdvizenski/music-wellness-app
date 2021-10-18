@@ -53,11 +53,13 @@ function registerAdmin(username, password) {
         headers: authHeader()
     }
 
-    return GlobalVariables.axios.post('/authenticate/register-admin', { username: username, password: password }, config)
-        .then(handleResponse)
-        .then(message => {
-            return message;
-        });
+    let payLoad = {username: username, password: password};
+
+    let response = GlobalVariables.axios.post('/authenticate/register-admin', payLoad, config)
+    .then((response) => {
+        return response;
+    })
+    return response;
 }
 
 function logout() {

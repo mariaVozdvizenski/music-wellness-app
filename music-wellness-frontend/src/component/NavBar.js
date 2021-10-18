@@ -25,7 +25,7 @@ class NavBar extends React.Component {
         if (this.props.user) {
             let register;
             if (this.props.user.isAdmin) {
-                //register = <NavItem url="/register" name="Register admin"></NavItem>
+                register = <NavItem url="/register-admin" name="Register admin"></NavItem>
             }
             return (
                 <React.Fragment>

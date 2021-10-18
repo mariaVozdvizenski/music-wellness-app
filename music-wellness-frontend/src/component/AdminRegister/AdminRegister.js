@@ -1,13 +1,13 @@
 import React from 'react';
-import './AddSong.css';
+import '../AddSong.css';
 import { Alert } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { authenticationService } from '../service/AuthenticationService';
+import { authenticationService } from '../../service/AuthenticationService';
 import { Route, Redirect } from 'react-router-dom';
-import './Register.css'
+import './AdminRegister.css'
 
-class Register extends React.Component {
+class AdminRegister extends React.Component {
 
     constructor(props) {
         super(props);
@@ -25,7 +25,7 @@ class Register extends React.Component {
         this.setValidationErrors = this.setValidationErrors.bind(this);
         this.setServerErrors = this.setServerErrors.bind(this);
         this.displayAlert = this.displayAlert.bind(this);
-        this.registerUser = this.registerUser.bind(this);
+        this.currentUserIsLoggedInAndNotAnAdmin = this.currentUserIsLoggedInAndNotAnAdmin.bind(this);
     }
 
     componentDidMount() {
@@ -33,20 +33,16 @@ class Register extends React.Component {
     }
 
     handleSubmit(event) {
-        this.registerUser(event);
-    }
-
-    registerUser(event) {
-        authenticationService.register(this.state.username, this.state.password).then(message => {
-        })
-            .then(() => authenticationService.login(this.state.username, this.state.password)).then(data => {
-                this.setState({ redirect: true });
-            })
-            .catch(err => {
-                this.setState({ serverErrorMessage: err });
-                this.checkForErrors();
-            });
         event.preventDefault();
+        authenticationService.registerAdmin(this.state.username, this.state.password).then(message => {
+            if (message.status == 200) {
+                this.setState( {redirect : true });
+            }
+        })
+        .catch((err) => {
+            this.setState({ serverErrorMessage: "User with this username already exists!" });
+            this.checkForErrors();
+        });
     }
 
     handleInputChange(event) {
@@ -118,15 +114,17 @@ class Register extends React.Component {
         }
     }
 
+    currentUserIsLoggedInAndNotAnAdmin() {
+        return authenticationService.currentUserValue !== null && !authenticationService.currentUserValue.isAdmin;
+    }
+
     render() {
-        if (this.state.redirect == true || authenticationService.currentUserValue) {
+        if (this.state.redirect == true || this.currentUserIsLoggedInAndNotAnAdmin()) {
             return <Redirect to="/"></Redirect>
         }
         return <div className="page-content">
             <div className="background-green">
-                {
-                    <h2>Register</h2>
-                }
+                <h2>Register Admin</h2>
                 {this.displayAlert() && <Alert variant="danger">{this.displayErrorMessage()}</Alert>}
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
@@ -146,4 +144,4 @@ class Register extends React.Component {
     }
 }
 
-export default Register
+export default AdminRegister
