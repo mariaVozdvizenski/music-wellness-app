@@ -20,6 +20,7 @@ import { authenticationService } from './service/AuthenticationService';
 import { PrivateRoute } from './component/PrivateRoute';
 import Register from './component/Register';
 import Credits from './component/Credits';
+import NotFound from './component/NotFound/NotFound';
 
 
 class App extends React.Component {
@@ -53,7 +54,8 @@ class App extends React.Component {
             <Route path="/register" component={Register} />
             <Route path="/credits" component={Credits} />
             <PrivateRoute path="/add-song" component={AddSong} />
-            <Route path="/" component={Home} />
+            <Route exact path="/" component={Home} />
+            <Route component={NotFound} />
           </Switch>
         </div>
       </Router>
