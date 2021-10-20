@@ -88,7 +88,8 @@ namespace WebApp.Controllers
         [Route("register-admin")]  
         [Authorize (Roles = UserRoles.Admin)]
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model)  
-        {  
+        {
+
             var userExists = await userManager.FindByNameAsync(model.Username);  
             if (userExists != null)  
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });  

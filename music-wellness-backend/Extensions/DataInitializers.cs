@@ -86,21 +86,24 @@ namespace Extensions
                 new Song()
                 {
                     Id = 1,
-                    Title = "Test1",
+                    Title = "Cali",
+                    Artist = "Wataboi",
                     MoodId = 1,
                     FileName = "test1.mp3"
                 },
                 new Song()
                 {
                     Id = 2,
-                    Title = "Test2",
+                    Title = "Energetic Hip-Hop",
+                    Artist = "Skilsel",
                     MoodId = 1,
                     FileName = "test2.mp3"
                 },
                 new Song()
                 {
                     Id = 3,
-                    Title = "Test3",
+                    Title = "In the Forest",
+                    Artist = "Lesfm",
                     MoodId = 2,
                     FileName = "test3.mp3"
                 },

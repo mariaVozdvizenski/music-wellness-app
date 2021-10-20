@@ -33,7 +33,7 @@ namespace WebApp.Controllers
         }
 
         // GET: api/SongRatings/5
-        [HttpGet("{id}"), Authorize]
+        [HttpGet("{id}"), Authorize(Roles = UserRoles.Admin)]
         public async Task<ActionResult<SongRating>> GetSongRating(int id)
         {
             var songRating = await _songRatingRepository.Get(id);
