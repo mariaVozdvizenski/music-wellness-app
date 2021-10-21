@@ -20,11 +20,9 @@ function EditDeleteSong(props) {
     useEffect(() => {
         MoodService.getAllMoods().then((data) => {
             setMoods(data);
-            console.log(moods);
         });
         SongService.getSong(id).then((data) => {
             setSong(data);
-            console.log(song);
         });
     }, []);
 
@@ -38,7 +36,6 @@ function EditDeleteSong(props) {
             //let formData = new FormData();
             //formData.append("file", this.state.selectedFile);
             SongService.updateSong(song).then(response => {
-                console.log(response);
                 props.history.push('/all-songs');
             });
         }
@@ -57,9 +54,7 @@ function EditDeleteSong(props) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-        console.log(song);
         song[name] = value;
-        console.log(song);
         setSong(song);
     }
 

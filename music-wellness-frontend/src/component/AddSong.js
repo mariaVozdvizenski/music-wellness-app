@@ -47,7 +47,6 @@ class AddSong extends React.Component {
 
                 SongService.uploadAudio(formData).then((response) => {
                     song.fileName = response.fileName;
-                    console.log(song);
                     SongService.postSong(song).then((response) => {
                         this.setState({redirect : true})
                     })
@@ -70,7 +69,7 @@ class AddSong extends React.Component {
             const target = event.target;
             this.setState({
                 moodValue: target.value
-            }, () => console.log(this.state.moodValue));
+            });
         }
 
     handleFileChange(event) {

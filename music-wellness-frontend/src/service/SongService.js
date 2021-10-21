@@ -37,7 +37,6 @@ const SongService = {
         }
         const response = GlobalVariables.axios.post('/songs', song, config)
             .then((response) => {
-                console.log(response);
                 return response.data;
             })
             .catch(function (error) {
