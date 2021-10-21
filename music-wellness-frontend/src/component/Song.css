@@ -21,6 +21,8 @@
 .song-info {
     text-align: center;
     color: black;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .song-info > h2 {
