@@ -49,9 +49,19 @@ namespace WebApp
             });
             
             services.AddControllers();
-            services.AddDbContext<AppDbContext>(opt =>
+
+            var useInMemory = Configuration.GetSection("UseInMemoryDb:value").Get<bool>();
+            if (useInMemory)
+            {
+                services.AddDbContext<AppDbContext>(opt => 
+                    opt.UseInMemoryDatabase("Music Wellness"));
+            }
+            else
+            {
+                services.AddDbContext<AppDbContext>(opt =>
                 opt.UseMySQL(Configuration.GetConnectionString("MySQLConnString")));
-            
+            }
+
             services.AddScoped<SongMapper>();
             services.AddScoped<MoodRepository>();
             services.AddScoped<SongRepository>();
