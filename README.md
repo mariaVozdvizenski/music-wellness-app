@@ -4,10 +4,20 @@ The purpose of this app is to provide a way of mood enchantment by using music.
 
 Specially designated admins with experience in music and musical therapy are going to add various musical pieces that will help the listeners to achieve various, positive emotional states.
 
+
 ## Default admin account credentials
+
+An admin has more rights than a regular user. These are the credentials to log into a default admin account that is created on server startup.
 
 * username - admin
 * password - 1234
+
+## Database
+
+This application is connected to a remote MySQL database. If there are any problems with it, please use an in-memory database instead.
+The instructions for switching to an in-memory database are written below
+1. Go to `music-wellness-backend/WebApp/appsettings.json`
+2. Change the value of "UseInMemoryDb" from `false` to `true`
 
 ---
 
