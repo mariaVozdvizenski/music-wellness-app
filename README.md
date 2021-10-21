@@ -19,8 +19,6 @@ The instructions for switching to an in-memory database are written below
 1. Go to `music-wellness-backend/WebApp/appsettings.json`
 2. Change the value of "UseInMemoryDb" from `false` to `true`
 
----
-
 ## Technical stack
 ### Backend
 * .NET 5
@@ -32,12 +30,10 @@ The instructions for switching to an in-memory database are written below
 * npm
 * Node
 
----
 ## Repository structure
 
 Both frontend (*music-wellness-frontend*) and backend (*music-wellness-backend*) parts of the application can be found in this repository.
 
----
 ## Running the app
 
 The process of running the application is described in this section. This tutorial assumes that a command line is used.
