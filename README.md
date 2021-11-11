@@ -46,8 +46,9 @@ The process of running the application is described in this section. This tutori
 * .NET 5.0 SDK installed
 
 #### Process
-1. Move to the *music-wellness-backend* folder
-2. Run the following command `dotnet run --project WebApp`
+1. Open command line
+2. Move to the *music-wellness-backend* folder
+3. Run the following command `dotnet run --project WebApp`
 
 ### Frontend
 
@@ -58,6 +59,7 @@ Frontend should be ran while backend is already running.
 * npm installed
 
 #### Process
-1. Move to the *music-wellness-frontend* folder
-2. To install the needed packages and libraries run `npm install`
-3. Run the following command `npm start`
+1. Open another command line
+2. Move to the *music-wellness-frontend* folder
+3. To install the needed packages and libraries run `npm install`
+4. Run the following command `npm start`
