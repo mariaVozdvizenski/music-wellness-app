@@ -12,28 +12,6 @@ An admin has more rights than a regular user. These are the credentials to log i
 * username - admin
 * password - 1234
 
-## Database
-
-This application is connected to a remote MySQL database. If there are any problems with it, please use an in-memory database instead.
-The instructions for switching to an in-memory database are written below
-1. Go to `music-wellness-backend/WebApp/appsettings.json`
-2. Change the value of "UseInMemoryDb" from `false` to `true`
-
-## Technical stack
-### Backend
-* .NET 5
-* Entity Framework Core
-* MySQL
-
-### Frontend
-* ReactJS
-* npm
-* Node
-
-## Repository structure
-
-Both frontend (*music-wellness-frontend*) and backend (*music-wellness-backend*) parts of the application can be found in this repository.
-
 ## Running the app
 
 The process of running the application is described in this section. This tutorial assumes that a command line is used.
@@ -63,3 +41,26 @@ Frontend should be ran while backend is already running.
 2. Move to the *music-wellness-frontend* folder
 3. To install the needed packages and libraries run `npm install`
 4. Run the following command `npm start`
+
+## Database
+
+This application is connected to a remote MySQL database. If there are any problems with it, please use an in-memory database instead.
+The instructions for switching to an in-memory database are written below
+1. Go to `music-wellness-backend/WebApp/appsettings.json`
+2. Change the value of "UseInMemoryDb" from `false` to `true`
+
+## Technical stack
+### Backend
+* .NET 5
+* Entity Framework Core
+* MySQL
+
+### Frontend
+* ReactJS
+* npm
+* Node
+
+## Repository structure
+
+Both frontend (*music-wellness-frontend*) and backend (*music-wellness-backend*) parts of the application can be found in this repository.
+
